@@ -9,6 +9,7 @@ import com.ccq.utils.LogUtil;
 import com.ccq.utils.NetUtil;
 import com.ccq.utils.WordDefined;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -145,9 +146,8 @@ public class UserController {
     @RequestMapping(value = "{userid}/upload", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     @ResponseBody
     public String updateUserPassword(@PathVariable("userid") String userid,String image,HttpServletRequest request){
-
+        String filePath = request.getSession().getServletContext().getRealPath("/")+"static\\source\\pic\\";
         JSONObject responseJson = new JSONObject();
-        String filePath = "I:\\IDEA2017-02\\img\\";
         String PicName= UUID.randomUUID().toString()+".png";
 
         String header ="data:image";
@@ -170,9 +170,14 @@ public class UserController {
                 out.close();
                 // 修改图片
                 User user = userService.getUserById(userid);
+                String oldPicName = user.getProfilehead();
                 user.setProfilehead(PicName);
                 int flag = userService.updateUser(user);
                 if(flag > 0){
+                    if(StringUtils.isNotBlank(oldPicName)){
+                        File file = new File(filePath+ oldPicName);
+                        if (file.exists() && file.isFile()) file.delete();
+                    }
                     Log log = LogUtil.setLog(userid, CommonDate.getTime24(), WordDefined.LOG_TYPE_UPDATE,WordDefined.LOG_DETAIL_UPDATE_PROFILEHEAD, NetUtil.getIpAddress(request));
                     logService.insertLog(log);
                 }else{

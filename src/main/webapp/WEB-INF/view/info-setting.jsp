@@ -84,7 +84,7 @@
                 <div class="am-tab-panel am-fade" id="tab2">
                     <center>
                         <div class="up-img-cover"  id="up-img-touch" >
-                            <img class="am-circle" alt="点击图片上传" width="140" height="140" src="/pic/${user.profilehead}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
+                            <img class="am-circle" alt="点击图片上传" width="140" height="140" src="${ctx}/static/source/pic/${user.profilehead}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
                         </div>
                     </center>
                     <div><a style="text-align: center; display: block;"  id="pic"></a></div>
