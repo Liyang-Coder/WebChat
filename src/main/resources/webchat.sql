@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mysql
-Source Server Version : 50173
-Source Host           : 127.0.0.1:3306
+Source Server         : localhost
+Source Server Version : 50720
+Source Host           : localhost:3306
 Source Database       : webchat
 
 Target Server Type    : MYSQL
-Target Server Version : 50173
+Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2017-12-27 23:26:12
+Date: 2019-05-19 12:24:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,11 @@ CREATE TABLE `log` (
   `detail` varchar(255) DEFAULT NULL,
   `ip` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -47,3 +51,10 @@ CREATE TABLE `user` (
   `status` int(11) DEFAULT NULL COMMENT '账号状态 1：正常，0禁用',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('2', '李白', '123123', '李白', '2', '23', 'a6044c0f-32ed-424c-bed0-a3dc1b4236fb.png', '2', '2', '2019-05-19 12:17:50', '1');
+INSERT INTO `user` VALUES ('3', '张三', '123123', '张三', '1', '2', 'c9dc3188-a2e5-44e5-b46b-524fa590c145.png', '123', '2', '2019-05-19 12:19:10', '1');
+SET FOREIGN_KEY_CHECKS=1;
